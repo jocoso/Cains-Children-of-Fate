@@ -37,6 +37,7 @@ class LeftClickInput(Input):
     def __init__(self):
         Input.__init__(self)
         
+        self.click_code = 1
         self.input = (0, 0)
         self.prev_input = (0, 0)
         
@@ -52,9 +53,10 @@ class LeftClickInput(Input):
     # make last input variable hold the new input
     # and replace the input variable with the current click
     def update(self, event):
-        if event.type == MOUSEBUTTONDOWN:
+        if event.type == MOUSEBUTTONDOWN and event.button == self.click_code:
             self.last_input = self.input
             self.input = mouse.get_pos()
+            print(self.input)
 
 class ProtoSlide(Slide):
     def __init__(self):
